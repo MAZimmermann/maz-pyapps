@@ -1,6 +1,6 @@
 from flask import Flask
-import bs4 as bs
-import requests
+#import bs4 as bs
+#import requests
 
 # Print a welcome message
 def welcome(ticker = " "):
