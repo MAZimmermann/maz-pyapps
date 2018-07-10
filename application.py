@@ -1,33 +1,26 @@
 from flask import Flask
+#from bs4 import BeautifulSoup as bs
 
-# print a nice greeting.
-def say_hello(username = " "):
-    if username == " ":
-        return '<p>Welcome!</p>\n'
+# Print a welcome message
+def welcome(ticker = " "):
+    if ticker == " ":
+        return '<p>Welcome! Append a valid ticker symbol to the url and see what happens...</p>\n'
     else:
-        return '<p>Welcome, %s! </p>\n' % username
+        return '<p>Company: %s </p>\n' % ticker
 
-# some bits of text for the page.
-header_text = '''
-    <html>\n<head> <title>MAZ</title> </head>\n<body>'''
-instructions = '''
-    <p><em>Hint</em>: This is a RESTful web service! Append a username
-    to the URL (for example: <code>/Thelonious</code>) to say hello to
-    someone specific.</p>\n'''
-home_link = '<p><a href="/">Back</a></p>\n'
-footer_text = '</body>\n</html>'
+# Set title for webpage
+header_text = '''<html>\n<head> <title>MAZ</title> </head>\n<body>'''
 
 # EB looks for an 'application' callable by default.
 application = Flask(__name__)
 
-# add a rule for the index page.
+# Add a rule for the index page.
 application.add_url_rule('/', 'index', (lambda: header_text +
-    say_hello()))
+    welcome()))
 
-# add a rule when the page is accessed with a name appended to the site
-# URL.
-application.add_url_rule('/<username>', 'hello', (lambda username:
-    header_text + say_hello(username)))
+# Add a rule when the page is accessed with a ticker appended to the site
+application.add_url_rule('/<ticker>', 'hello', (lambda ticker:
+    header_text + welcome(ticker)))
 
 # run the app.
 if __name__ == "__main__":
