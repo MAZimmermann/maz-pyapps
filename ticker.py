@@ -1,12 +1,9 @@
-# -*- coding: utf-8 -*-
 """
-Created on Thu Jun 28 14:21:29 2018
-
-@author: MAZimmermann
+ Author @MAZ
 """
 
 # Module for web scraping
-import bs4 as bs
+from bs4 import BeautifulSoup
 
 # Module for making http requests
 import requests
@@ -22,7 +19,7 @@ def grabTickerInfo(appended):
     resp = requests.get(url)
     
     # Make new beautiful soup object
-    soup = bs.BeautifulSoup(resp.text, "lxml")
+    soup = BeautifulSoup(resp.text, "lxml")
     
     # This will grab descriptive section containing the current P/E
     section = soup.find('section', {'id': 'stock_comp_desc'})
