@@ -11,9 +11,9 @@ import bs4 as bs
 # Module for making http requests
 import requests
 
-def grabTickerInfo():
+def grabTickerInfo(appended):
     # Change to ticker of your choosing
-    ticker = 'xom'
+    ticker = appended
     
     # .upper() will change all the letters in 'ticker' to upercase (not sure if this is necessary)
     url = 'https://www.zacks.com/stock/chart/'+ticker.upper()+'/fundamental/pe-ratio-ttm'
@@ -37,4 +37,5 @@ def grabTickerInfo():
         else:
             # We found the P/E :)
             theGoods = ptag.text[ptag.text.find(start):ptag.text.find(end)]
-            print(ticker,"has a",theGoods)
+            #print(ticker,"has a",theGoods)
+            return '<p>This company has a %s </p>\n' % theGoods

@@ -1,6 +1,8 @@
 from flask import Flask
-#import bs4 as bs
-#import requests
+import requests
+import bs4 as bs
+
+from ticker import grabTickerInfo
 
 # Print a welcome message
 def welcome(ticker = " "):
@@ -21,7 +23,7 @@ application.add_url_rule('/', 'index', (lambda: header_text +
 
 # Add a rule when the page is accessed with a ticker appended to the site
 application.add_url_rule('/<ticker>', 'hello', (lambda ticker:
-    header_text + welcome(ticker)))
+    header_text + welcome(ticker) + grabTickerInfo(ticker)))
 
 # run the app.
 if __name__ == "__main__":
