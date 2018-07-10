@@ -1,5 +1,6 @@
 from flask import Flask
-#from bs4 import BeautifulSoup as bs
+import bs4 as bs
+import requests
 
 # Print a welcome message
 def welcome(ticker = " "):
