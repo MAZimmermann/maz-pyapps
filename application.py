@@ -1,6 +1,8 @@
+"""
+ Author @MAZ
+"""
+
 from flask import Flask
-import requests
-import bs4 as bs
 
 from ticker import grabTickerInfo
 
