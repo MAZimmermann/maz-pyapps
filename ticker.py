@@ -34,5 +34,4 @@ def grabTickerInfo(appended):
         else:
             # We found the P/E :)
             theGoods = ptag.text[ptag.text.find(start):ptag.text.find(end)]
-            #print(ticker,"has a",theGoods)
             return '<p>This company has a %s </p>\n' % theGoods
