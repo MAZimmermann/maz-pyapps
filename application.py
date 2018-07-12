@@ -2,8 +2,10 @@
  Author @MAZ
 """
 
+# Import statement for flask
 from flask import Flask
 
+# Import statement for function I wrote in ticker.py
 from ticker import grabTickerInfo
 
 # Print a welcome message
@@ -29,7 +31,4 @@ application.add_url_rule('/<ticker>', 'hello', (lambda ticker:
 
 # run the app.
 if __name__ == "__main__":
-    # Setting debug to True enables debug output. This line should be
-    # removed before deploying a production app.
-    application.debug = True
     application.run()
