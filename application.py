@@ -31,4 +31,5 @@ application.add_url_rule('/<ticker>', 'hello', (lambda ticker:
 
 # run the app.
 if __name__ == "__main__":
+    application.debug = True
     application.run()
