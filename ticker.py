@@ -12,8 +12,10 @@ def grabTickerInfo(appended):
     # Change to ticker of your choosing
     ticker = appended
     
+    return '<p>Connections forcibly closed, working on new source for %s stock data...</p>' %ticker
+
     # .upper() will change all the letters in 'ticker' to upercase (not sure if this is necessary)
-    url = 'https://www.zacks.com/stock/chart/'+ticker.upper()+'/fundamental/pe-ratio-ttm'
+    """url = 'https://www.zacks.com/stock/chart/'+ticker.upper()+'/fundamental/pe-ratio-ttm'
     
     # Make get request to our custom url, store response in resp
     resp = requests.get(url)
@@ -35,3 +37,4 @@ def grabTickerInfo(appended):
             # We found the P/E :)
             theGoods = ptag.text[ptag.text.find(start):ptag.text.find(end)]
             return '<p>This company has a %s </p>\n' % theGoods
+    """
