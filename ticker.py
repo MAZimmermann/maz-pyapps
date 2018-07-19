@@ -18,6 +18,12 @@ def grabTickerInfo(appended):
     # Make get request to our custom url, store response in resp
     resp = requests.get(url)
     
+    # This will prevent us from hitting a server error if an invalid ticker is used
+    if "There were no matches found for" in resp.text:
+        return 0
+    elif "/tools/quotes/lookup.asp" in resp.text:
+        return 0
+    
     # Make new beautiful soup object
     soup = BeautifulSoup(resp.text, "html.parser")
     
