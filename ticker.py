@@ -9,32 +9,21 @@ from bs4 import BeautifulSoup
 import requests
 
 def grabTickerInfo(appended):
-    # Change to ticker of your choosing
+    # Set ticker to whatever has been appended to the url
     ticker = appended
-    
-    return '<p>Connections forcibly closed, working on new source for %s stock data...</p>' %ticker
 
     # .upper() will change all the letters in 'ticker' to upercase (not sure if this is necessary)
-    """url = 'https://www.zacks.com/stock/chart/'+ticker.upper()+'/fundamental/pe-ratio-ttm'
+    url = 'https://www.marketwatch.com/investing/stock/'+ticker.upper()
     
     # Make get request to our custom url, store response in resp
     resp = requests.get(url)
     
     # Make new beautiful soup object
-    soup = BeautifulSoup(resp.text, "lxml")
+    soup = BeautifulSoup.BeautifulSoup(resp.text, "html.parser")
     
-    # This will grab descriptive section containing the current P/E
-    section = soup.find('section', {'id': 'stock_comp_desc'})
+    # Set dataList to the bundle of elements/tags nested within class: 'list list--kv list--col50'
+    dataList = soup.find('ul', {'class': 'list list--kv list--col50'})
     
-    # zacks.com has a predictable format for listing a companies P/E
-    start = 'trailing-twelve-months P/E of'
-    end = 'compared to'
-    
-    for ptag in section.findAll('p'):
-        if "trailing-twelve-months P/E of" not in ptag.text: 
-            continue
-        else:
-            # We found the P/E :)
-            theGoods = ptag.text[ptag.text.find(start):ptag.text.find(end)]
-            return '<p>This company has a %s </p>\n' % theGoods
-    """
+    # Iterate through dataList and print dataListItem.text
+    for dataListItem in dataList.findAll('li', {'class': 'kv__item'}):
+        return dataListItem.text
