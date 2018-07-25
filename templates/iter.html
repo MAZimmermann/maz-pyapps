@@ -1,21 +1,30 @@
 <!DOCTYPE html>
 <html>
+
   <head>
     <title>MAZ</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/normalize.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/skeleton.css') }}">
   </head>
+
   <body>
-    <div class="row" style="margin: auto;">
-      <div class="twelve columns" style="margin: auto;">
-        <table class="u-full-width" style="margin: auto;">
-          <tbody>
-            {% for item in info %}
-            <tr><td>{{item}}</td></tr>
-            {% endfor %}
-          </tbody>
-        </table>
-      </div>
+    <div class="container">
+
+      <section class="header" style="padding-top: 2.5%;">
+        <h3 class="title">Company:
+          <span style="color: red; text-transform: uppercase;">{{symbol}}</span>
+        </h3>
+      </section>
+
+      <table class="u-full-width">
+        <tbody>
+          {% for item in info %}
+          <tr><td>{{item}}</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
     </div>
   </body>
+
 </html>

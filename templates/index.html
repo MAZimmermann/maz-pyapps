@@ -1,15 +1,35 @@
 <!DOCTYPE html>
 <html>
+
   <head>
     <title>MAZ</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/normalize.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/skeleton.css') }}">
   </head>
+
   <body>
-    <div class="row">
-      <div class="twelve columns">
-        <p>Welcome! Enter a valid ticker symbol and press submit for today's stats.</p>
-      </div>
+    <div class="container">
+
+      <script>
+          function replace() {
+              var x = document.URL;
+              var tick = document.getElementById("ticker").value;
+              var url = x+tick;
+              document.location = url
+          }
+      </script>
+
+      <section class="header" style="padding-top: 2.5%;">
+        <h1 class="title">Welcome</h1>
+        <h6>Enter a valid ticker symbol and press submit for today's stats.</h6>
+      </section>
+
+      <form>
+        <input placeholder="Enter Ticker..." type="text" style="resize: none;" id="ticker"></input>
+        <input class="button-primary" type="submit" value="Submit" onclick="replace()">
+      </form>
+
     </div>
   </body>
+
 </html>

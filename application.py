@@ -1,6 +1,4 @@
-"""
- Author @MAZ
-"""
+""" Author @MAZimmermann """
 
 # Import Flask and render_template
 from flask import Flask, render_template
@@ -8,21 +6,16 @@ from flask import Flask, render_template
 # Import function I wrote in ticker.py
 from ticker import grabTickerInfo
 
-# Print welcome message
-def welcome(ticker = " "):
-    if ticker == " ":
-        return render_template('index.html')
-    else:
-        return '<p>Company:<span style="color: red;"> %s </span></p>\n' % ticker.upper()
+def welcome():
+    return render_template('index.html')
 
 # This will validate the ticker appended by the user
 def validateTicker(tick):
     tickerInfo = grabTickerInfo(tick)
     if tickerInfo == 0:
-        errMsg = "This doesn't seem to be a valid ticker..."
-        return errMsg
+        return render_template('index.html') + render_template('errMsg.html', symbol=tick)
     else:
-        return render_template('iter.html', info=tickerInfo)
+        return render_template('iter.html', info=tickerInfo, symbol=tick)
 
 # EB looks for an 'application' callable by default.
 application = Flask(__name__)
@@ -31,7 +24,7 @@ application = Flask(__name__)
 application.add_url_rule('/', 'index', (lambda: welcome()))
 
 # Add a rule for when a ticker is appended to the url
-application.add_url_rule('/<ticker>', 'hello', (lambda ticker: welcome(ticker) + validateTicker(ticker)))
+application.add_url_rule('/<ticker>', 'stats', (lambda ticker: validateTicker(ticker)))
 
 # Run the app
 if __name__ == "__main__":
