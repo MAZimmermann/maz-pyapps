@@ -1,12 +1,21 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Flask app</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <title>MAZ</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/normalize.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/skeleton.css') }}">
   </head>
-  <ul>
-    {% for item in info %}
-    <li><p>{{item}}</p> </li>
-    {% endfor %}
-  </ul>
+  <body>
+    <div class="row" style="margin: auto;">
+      <div class="twelve columns" style="margin: auto;">
+        <table class="u-full-width" style="margin: auto;">
+          <tbody>
+            {% for item in info %}
+            <tr><td>{{item}}</td></tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
 </html>
