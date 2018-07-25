@@ -11,7 +11,7 @@ from ticker import grabTickerInfo
 # Print a welcome message :)
 def welcome(ticker = " "):
     if ticker == " ":
-        return '<p>Welcome! Append a valid ticker symbol to the url for today\'s stats</p>\n'
+        return render_template('index.html')
     else:
         return '<p>Company: %s </p>\n' % ticker.upper()
 
