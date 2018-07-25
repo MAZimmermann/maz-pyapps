@@ -1,11 +1,12 @@
 """ Author @MAZimmermann """
 
 # Import Flask and render_template
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 # Import function I wrote in ticker.py
 from ticker import grabTickerInfo
 
+# Welcome message
 def welcome():
     return render_template('index.html')
 
@@ -25,6 +26,13 @@ application.add_url_rule('/', 'index', (lambda: welcome()))
 
 # Add a rule for when a ticker is appended to the url
 application.add_url_rule('/<ticker>', 'stats', (lambda ticker: validateTicker(ticker)))
+
+# Working on route for ticker submission
+@application.route('/stats', methods = ['POST', 'GET'])
+def result():
+   if request.method == 'POST':
+      result = request.form
+      validateTicker(result)
 
 # Run the app
 if __name__ == "__main__":

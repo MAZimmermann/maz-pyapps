@@ -10,23 +10,19 @@
   <body>
     <div class="container">
 
-      <script>
-          function replace() {
-              var x = document.URL;
-              var tick = document.getElementById("ticker").value;
-              var url = x+tick;
-              document.location = url
-          }
-      </script>
-
       <section class="header" style="padding-top: 2.5%;">
         <h1 class="title">Welcome</h1>
         <h6>Enter a valid ticker symbol and press submit for today's stats.</h6>
       </section>
 
-      <form>
-        <input placeholder="Enter Ticker..." type="text" style="resize: none;" id="ticker"></input>
-        <input class="button-primary" type="submit" value="Submit" onclick="replace()">
+      <!--<form action="/search">
+        <input id="ticker" placeholder="Enter Ticker..." style="resize: none;">
+        <button id="btn" class="button-primary" onclick="replace()">Submit</button>
+      </form>-->
+
+      <form action = "http://http://127.0.0.1:5000/stats" method = "POST">
+        <input id="ticker" placeholder="Enter Ticker..." style="resize: none;">
+        <button id="btn" class="button-primary" onclick="replace()">Submit</button>
       </form>
 
     </div>

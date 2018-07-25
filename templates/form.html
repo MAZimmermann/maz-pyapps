@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>MAZ</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/normalize.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/skeleton.css') }}">
+    </head>
+
+    <body>
+
+    <script>
+        var x = document.getElementsById("ticker").value
+    </script>
+
+    <form action="127.0.0.1:5000/{{x}}" method = "POST">
+        <input id="ticker" type="text" placeholder="Enter Ticker..." style="resize: none;">
+        <input id="btn" class="button-primary" onclick="replace()" value="Submit">
+    </form>
+
+    </body>
+
+</html>
