@@ -11,7 +11,6 @@
       function append(){
           var action_src = "http://localhost:5000/" + document.getElementsByName("ticker")[0].value;
           var submit = document.getElementById('submitTicker');
-          alert(action_src)
           submit.action = action_src ;
       }
   </script>
@@ -24,7 +23,7 @@
         <h6>Enter a valid ticker symbol and press submit for today's stats.</h6>
       </section>
 
-      <form id="submitTicker" onsubmit="append()">
+      <form id="submitTicker" onsubmit="append()" method="post">
         <input type="text" name="ticker">
         <input type="submit" value="Submit">
       </form>

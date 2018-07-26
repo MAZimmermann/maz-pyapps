@@ -22,10 +22,10 @@ def validateTicker(tick):
 application = Flask(__name__)
 
 # Add a rule for when simply accessing the index page
-application.add_url_rule('/', 'index', (lambda: welcome()))
+application.add_url_rule('/', 'index', (lambda: welcome()), methods=['GET', 'POST'])
 
 # Add a rule for when a ticker is appended to the url
-application.add_url_rule('/<ticker>', 'stats', (lambda ticker: validateTicker(ticker)))
+application.add_url_rule('/<ticker>', 'stats', (lambda ticker: validateTicker(ticker)), methods=['GET', 'POST'])
 
 # Run the app
 if __name__ == "__main__":
