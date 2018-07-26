@@ -9,7 +9,7 @@
 
   <script>
       function append(){
-          var action_src = "http://localhost:5000/" + document.getElementsByName("ticker")[0].value;
+          var action_src = "http://maz-pyapps.qwwtwq3wae.us-east-1.elasticbeanstalk.com/" + document.getElementsByName("ticker")[0].value;
           var submit = document.getElementById('submitTicker');
           submit.action = action_src ;
       }
@@ -23,9 +23,9 @@
         <h6>Enter a valid ticker symbol and press submit for today's stats.</h6>
       </section>
 
-      <form id="submitTicker" onsubmit="append()" method="post">
-        <input type="text" name="ticker">
-        <input type="submit" value="Submit">
+      <form id="submitTicker" onsubmit="append()" method="post"> <!-- It's !important that the styling's perfect! -->
+        <input type="text" name="ticker" style="height: 30px !important; vertical-align: middle !important;">
+        <input class="button-primary" type="submit" value="Submit" style="height: 30px !important; vertical-align: middle !important;">
       </form>
 
     </div>
