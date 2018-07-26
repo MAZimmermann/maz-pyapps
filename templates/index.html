@@ -7,6 +7,15 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/skeleton.css') }}">
   </head>
 
+  <script>
+      function append(){
+          var action_src = "http://localhost:5000/" + document.getElementsByName("ticker")[0].value;
+          var submit = document.getElementById('submitTicker');
+          alert(action_src)
+          submit.action = action_src ;
+      }
+  </script>
+
   <body>
     <div class="container">
 
@@ -15,14 +24,9 @@
         <h6>Enter a valid ticker symbol and press submit for today's stats.</h6>
       </section>
 
-      <!--<form action="/search">
-        <input id="ticker" placeholder="Enter Ticker..." style="resize: none;">
-        <button id="btn" class="button-primary" onclick="replace()">Submit</button>
-      </form>-->
-
-      <form action = "http://http://127.0.0.1:5000/stats" method = "POST">
-        <input id="ticker" placeholder="Enter Ticker..." style="resize: none;">
-        <button id="btn" class="button-primary" onclick="replace()">Submit</button>
+      <form id="submitTicker" onsubmit="append()">
+        <input type="text" name="ticker">
+        <input type="submit" value="Submit">
       </form>
 
     </div>

@@ -27,13 +27,6 @@ application.add_url_rule('/', 'index', (lambda: welcome()))
 # Add a rule for when a ticker is appended to the url
 application.add_url_rule('/<ticker>', 'stats', (lambda ticker: validateTicker(ticker)))
 
-# Working on route for ticker submission
-@application.route('/stats', methods = ['POST', 'GET'])
-def result():
-   if request.method == 'POST':
-      result = request.form
-      validateTicker(result)
-
 # Run the app
 if __name__ == "__main__":
     # Set debug to true for development/testing purposes
