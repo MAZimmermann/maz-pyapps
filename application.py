@@ -19,8 +19,7 @@ def validateTicker(tick):
     if tickerInfo == 0:
         return render_template('index.html') + render_template('invalidTicker.html', symbol=tick)
     elif tickerInfo == 1:
-        lastMonth = ohlcInfo(tick)
-        return render_template('index.html') + render_template('scrapeBreak.html') + render_template('sma.html', data=lastMonth)
+        return render_template('index.html') + render_template('scrapeBreak.html')
     else:
         lastMonth = ohlcInfo(tick)
         return render_template('general.html', info=tickerInfo, symbol=tick) + render_template('sma.html', data=lastMonth)
