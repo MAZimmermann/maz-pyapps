@@ -44,5 +44,3 @@ def generalInfo(appended):
 
     # Return list to be passed into our html template
     return stockInfo
-
-generalInfo('AAPL')
