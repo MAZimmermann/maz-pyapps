@@ -3,8 +3,11 @@
 # Import Flask and render_template
 from flask import Flask, render_template, request
 
-# Import function I wrote in ticker.py
-from ticker import grabTickerInfo
+# Import 'generalInfo' from general.py
+from scripts.general import generalInfo
+
+# Import 'ohlcInfo' from sma.py
+#from scripts.sma import ohlcInfo
 
 # Welcome message
 def welcome():
@@ -12,9 +15,11 @@ def welcome():
 
 # This will validate the ticker appended by the user
 def validateTicker(tick):
-    tickerInfo = grabTickerInfo(tick)
+    tickerInfo = generalInfo(tick)
     if tickerInfo == 0:
-        return render_template('index.html') + render_template('errMsg.html', symbol=tick)
+        return render_template('index.html') + render_template('invalidTicker.html', symbol=tick)
+    elif tickerInfo == 1:
+        return render_template('index.html') + render_template('scrapeBreak.html')
     else:
         return render_template('iter.html', info=tickerInfo, symbol=tick)
 
