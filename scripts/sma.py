@@ -23,15 +23,16 @@ def ohlcInfo(appended):
     # Creating new dataframe (basically a spreadsheet)
     df = web.DataReader(ticker, 'iex', start, end)
     
-    filename = ticker + ".csv"
+    filename = ticker
     
     # Save our dataframe as a csv
     df.to_csv(filename)
     
     # LOTS of different I/O options with pandas
-    df = pd.read_csv(filename, parse_dates=True, index_col=0)
-    
-    print(df.head())
+    # df = pd.read_csv(filename, parse_dates=True, index_col=0)
+
+    # Using exact code from online sample for testing
+    df = pd.read_csv(filename).drop('open', axis=1)
     
     # Data that will be passed to application.py and rendered via an html template
     chart_data = df.to_dict(orient='records')

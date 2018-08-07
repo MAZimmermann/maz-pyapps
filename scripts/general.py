@@ -21,9 +21,9 @@ def generalInfo(appended):
     
     # This will prevent us from hitting a server error if an invalid ticker is used
     if "There were no matches found for" in resp.text:
-        return 0
+        return "Invalid Ticker"
     elif "/tools/quotes/lookup.asp" in resp.text:
-        return 0
+        return "Invalid Ticker"
     
     # Make new beautiful soup object
     soup = BeautifulSoup(resp.text, "html.parser")
@@ -34,7 +34,7 @@ def generalInfo(appended):
     # This will prevent us from hitting a server error if a valid ticker is used, BUT
     #  MarketWatch has changed there html...
     if dataList is None:
-        return 1
+        return "Alert Admin"
     
     stockInfo = []
     

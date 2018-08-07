@@ -1,7 +1,7 @@
 """ Author @MAZimmermann """
 
 # Import Flask and render_template
-from flask import Flask, render_template, request
+from flask import Flask, render_template
 
 # Import 'generalInfo' from general.py
 from scripts.general import generalInfo
@@ -16,10 +16,11 @@ def welcome():
 # This will validate the ticker appended by the user
 def validateTicker(tick):
     tickerInfo = generalInfo(tick)    
-    if tickerInfo == 0:
+    if tickerInfo == "Invalid Ticker":
         return render_template('index.html') + render_template('invalidTicker.html', symbol=tick)
-    elif tickerInfo == 1:
-        return render_template('index.html') + render_template('scrapeBreak.html')
+    elif tickerInfo == "Alert Admin":
+        lastMonth = ohlcInfo(tick)
+        return render_template('index.html') + render_template('scrapeBreak.html') + render_template('sma.html', data=lastMonth)
     else:
         lastMonth = ohlcInfo(tick)
         return render_template('general.html', info=tickerInfo, symbol=tick) + render_template('sma.html', data=lastMonth)
