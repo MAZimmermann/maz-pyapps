@@ -15,9 +15,14 @@ def generalInfo(appended):
 
     # .upper() will change all the letters in 'ticker' to upercase (not sure if this is necessary)
     url = 'https://www.marketwatch.com/investing/stock/'+ticker.upper()
+
+
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36'
+    }
     
     # Make get request to our custom url, store response in resp
-    resp = requests.get(url)
+    resp = requests.get(url, headers=headers)
     
     # This will prevent us from hitting a server error if an invalid ticker is used
     if "There were no matches found for" in resp.text:
@@ -30,6 +35,9 @@ def generalInfo(appended):
     
     # Set dataList to the bundle of elements/tags nested within class: 'list list--kv list--col50'
     dataList = soup.find('ul', {'class': 'list list--kv list--col50'})
+    
+    # Added for testing
+    print(dataList)
     
     # This will prevent us from hitting a server error if a valid ticker is used, BUT
     #  MarketWatch has changed there html...
@@ -44,3 +52,5 @@ def generalInfo(appended):
 
     # Return list to be passed into our html template
     return stockInfo
+
+generalInfo('aapl')
