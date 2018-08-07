@@ -15,9 +15,11 @@ import pandas_datareader.data as web
 
 def ohlcInfo(appended):
     
+    # Specify start and end date
     start = dt.datetime.now() + timedelta(-30)
     end = dt.datetime.now()
     
+    # Grab the ticker appended to the url and make it uppercase (not sure if this is necessary...)
     ticker = appended.upper()
     
     # Creating new dataframe (basically a spreadsheet)
@@ -28,11 +30,8 @@ def ohlcInfo(appended):
     # Save our dataframe as a csv
     df.to_csv(filename)
     
-    # LOTS of different I/O options with pandas
-    # df = pd.read_csv(filename, parse_dates=True, index_col=0)
-
-    # Using exact code from online sample for testing
-    df = pd.read_csv(filename).drop('open', axis=1)
+    # Read the newly saved csv and turn it into a pandas dataframe
+    df = pd.read_csv(filename)
     
     # Data that will be passed to application.py and rendered via an html template
     chart_data = df.to_dict(orient='records')
@@ -42,4 +41,5 @@ def ohlcInfo(appended):
     # Delete 'filename' once we're done
     os.unlink(filename)
     
+    # Return data in dictionary format
     return(data)
