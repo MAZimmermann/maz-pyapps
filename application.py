@@ -7,7 +7,7 @@ from flask import Flask, render_template
 from scripts.general import generalInfo
 
 # Import 'ohlcInfo' from sma.py
-from scripts.sma import ohlcInfo
+from scripts.ohlc import ohlcInfo
 
 # Welcome message
 def welcome():
@@ -18,11 +18,9 @@ def validateTicker(tick):
     tickerInfo = generalInfo(tick)    
     if tickerInfo == "Invalid Ticker":
         return render_template('index.html') + render_template('invalidTicker.html', symbol=tick)
-    elif tickerInfo == "Alert Admin":
-        return render_template('index.html') + render_template('scrapeBreak.html')
     else:
         lastMonth = ohlcInfo(tick)
-        return render_template('general.html', info=tickerInfo, symbol=tick) + render_template('sma.html', data=lastMonth)
+        return render_template('ohlc.html', data=lastMonth, symbol=tick) + render_template('general.html', info=tickerInfo, symbol=tick)
 
 # EB looks for an 'application' callable by default.
 application = Flask(__name__)

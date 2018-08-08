@@ -30,6 +30,19 @@
     <body>
         <div class="container">
    
+            <section class="header" style="padding-top: 2.5%; float: left;">
+                <h3 class="title">Company:
+                    <span style="color: red; text-transform: uppercase;">{{symbol}}</span>
+                </h3>
+                <!-- http://maz-pyapps.qwwtwq3wae.us-east-1.elasticbeanstalk.com/ -->
+                <!-- http://127.0.0.1:5000/ -->
+                <a class="button button-primary" href="http://maz-pyapps.qwwtwq3wae.us-east-1.elasticbeanstalk.com/">Home</a>
+            </section>
+   
+           <h6 style="clear: both;">Open (white),
+            <span style="color: green;">High</span>,
+            <span style="color: red;">Low</span>, and Close for the last month</h6>
+   
             <div id="graphDiv" class="u-full-width"></div>
                
             <script src="http://d3js.org/d3.v3.min.js"></script>
@@ -40,7 +53,7 @@
                 var graphData = {{ data.chart_data | safe }}
                 
                 <!-- Set the dimensions of the svg -->
-                var margin = {top: 30, right: 50, bottom: 75, left: 50};
+                var margin = {top: 0, right: 50, bottom: 75, left: 50};
                 var svgWidth = 600;
                 var svgHeight = 300;
                 var graphWidth = svgWidth - margin.left - margin.right;
@@ -155,29 +168,6 @@
                     <!-- Add the Y Axis -->
                     svg.append("g")
                      .attr("class", "y axis").call(yAxis);
-                    svg.append("text")
-                     .attr("transform", "translate("+(graphWidth+3)+","+y(graphData[0].High)+")")
-                     .attr("dy", "5%").attr("text-anchor", "start")
-                     .style("fill", "white")
-                     .text("Open");
-                    svg.append("text")
-                     .attr("transform", "translate("+(graphWidth+3)+","+y(graphData[0].Low)+")")
-                     .attr("dy", "10%")
-                     .attr("text-anchor", "start")
-                     .style("fill", "green")
-                     .text("High");
-                    svg.append("text")
-                     .attr("transform", "translate("+(graphWidth+3)+","+y(graphData[0].Close)+")")
-                     .attr("dy", "15%")
-                     .attr("text-anchor", "start")
-                     .style("fill", "red")
-                     .text("Low");
-                    svg.append("text")
-                     .attr("transform", "translate("+(graphWidth+3)+","+y(graphData[0].Close)+")")
-                     .attr("dy", "20%")
-                     .attr("text-anchor", "start")
-                     .style("fill", "black")
-                     .text("Close");
                 
                 };
                 

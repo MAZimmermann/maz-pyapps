@@ -55,3 +55,34 @@ def pretty_print_POST(req):
         req.body,
     ))
 """
+
+"""
+elif tickerInfo == "Alert Admin":
+        return render_template('index.html') + render_template('scrapeBreak.html')
+"""
+
+""" Old styling for ohlc graph """
+svg.append("text")
+ .attr("transform", "translate("+(graphWidth+3)+","+y(graphData[0].High)+")")
+ .attr("dy", "5%").attr("text-anchor", "start")
+ .style("fill", "white")
+ .text("Open");
+svg.append("text")
+ .attr("transform", "translate("+(graphWidth+3)+","+y(graphData[0].Low)+")")
+ .attr("dy", "10%")
+ .attr("text-anchor", "start")
+ .style("fill", "green")
+ .text("High");
+svg.append("text")
+ .attr("transform", "translate("+(graphWidth+3)+","+y(graphData[0].Close)+")")
+ .attr("dy", "15%")
+ .attr("text-anchor", "start")
+ .style("fill", "red")
+ .text("Low");
+svg.append("text")
+ .attr("transform", "translate("+(graphWidth+3)+","+y(graphData[0].Close)+")")
+ .attr("dy", "20%")
+ .attr("text-anchor", "start")
+ .style("fill", "black")
+ .text("Close");
+ 

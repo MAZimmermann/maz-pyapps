@@ -10,21 +10,20 @@
   <body>
     <div class="container">
 
-      <section class="header" style="padding-top: 2.5%;">
-        <h3 class="title">Company:
-          <span style="color: red; text-transform: uppercase;">{{symbol}}</span>
-        </h3>
-      </section>
+        <h6>General stats for <span style="color: red; text-transform: uppercase;">{{symbol}}</span></h6>
 
-    <a class="button button-primary" href="http://127.0.0.1:5000">Home</a>
+        <h6>Data provided for free by 
+        <a href="https://iextrading.com/developer">IEX</a>. View 
+        <a href="https://iextrading.com/api-exhibit-a/">IEX’s Terms of Use</a>
+        </h6>
 
-      <table class="u-full-width">
-        <tbody>
-          {% for item in info %}
-          <tr><td>{{item}}</td></tr>
-          {% endfor %}
-        </tbody>
-      </table>
+        <table class="u-full-width">
+            <tbody>
+                {% for item in info %}
+                <tr><td>{{item}}</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
 
     </div>
   </body>

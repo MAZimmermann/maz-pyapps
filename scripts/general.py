@@ -2,10 +2,14 @@
  Author @MAZ
 """
 
+# Module for handling json representation
 import json
 
 # Module for making http requests
 import requests
+
+# Hope to utilize this in the near future, keys in the json object are concatenated
+# import nltk
 
 def generalInfo(appended):
     
@@ -18,11 +22,18 @@ def generalInfo(appended):
     # Make get request to our custom url, store response in resp
     resp = requests.get(url)
     
+    if 'Unknown symbol' in str(resp.content):
+        return "Invalid Ticker"
+    
+    # Turn response into json objecy
     json_data = json.loads(resp.text)
     
+    # Define/Initialize string array to be passed to general.html template
     stockInfo = []
     
+    # Iterate throguh json object, special instructions needed for each key
     for item in json_data:
+        # print(nltk.word_tokenize(item))
         stockInfo.append(item + ": " + str(json_data[item]))
     
     """
@@ -36,4 +47,5 @@ def generalInfo(appended):
     
     """
     
+    # Return stockInfo[]
     return stockInfo
