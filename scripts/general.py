@@ -14,15 +14,21 @@ def generalInfo(appended):
     ticker = appended
 
     # .upper() will change all the letters in 'ticker' to upercase (not sure if this is necessary)
-    url = 'https://www.marketwatch.com/investing/stock/'+ticker.upper()
-
-
-    headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36'
-    }
+    url = 'https://api.iextrading.com/1.0/stock/'+ticker.upper()+'/stats'
     
     # Make get request to our custom url, store response in resp
-    resp = requests.get(url, headers=headers)
+    resp = requests.get(url)
+    
+    """
+    
+    Additional library and code used for testing, no longer needed
+    
+    from requests_toolbelt.utils import dump
+    
+    data = dump.dump_all(resp)
+    print(data.decode('utf-8'))
+    
+    """
     
     # This will prevent us from hitting a server error if an invalid ticker is used
     if "There were no matches found for" in resp.text:
@@ -31,7 +37,7 @@ def generalInfo(appended):
         return "Invalid Ticker"
     
     # Make new beautiful soup object
-    soup = BeautifulSoup(resp.text, "html.parser")
+    soup = BeautifulSoup(resp.text, "lxml")
     
     # Set dataList to the bundle of elements/tags nested within class: 'list list--kv list--col50'
     dataList = soup.find('ul', {'class': 'list list--kv list--col50'})
@@ -52,5 +58,18 @@ def generalInfo(appended):
 
     # Return list to be passed into our html template
     return stockInfo
+
+"""
+def pretty_print_POST(req):
+    
+    Helper function used for testing, no longer needed
+    
+    print('{}\n{}\n{}\n\n{}'.format(
+        '-----------START-----------',
+        req.method + ' ' + req.url,
+        '\n'.join('{}: {}'.format(k, v) for k, v in req.headers.items()),
+        req.body,
+    ))
+"""
 
 generalInfo('aapl')
