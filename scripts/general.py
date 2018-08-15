@@ -25,7 +25,7 @@ def generalInfo(appended):
     if 'Unknown symbol' in str(resp.content):
         return "Invalid Ticker"
     
-    # Turn response into json objecy
+    # Turn response into json object
     json_data = json.loads(resp.text)
     
     # Define/Initialize string array to be passed to general.html template
